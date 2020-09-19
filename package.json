@@ -1,0 +1,33 @@
+{
+  "name": "vue-component-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhamadIsmuaji/vue-component-testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhamadIsmuaji/vue-component-testing/issues"
+  },
+  "homepage": "https://github.com/MuhamadIsmuaji/vue-component-testing#readme",
+  "devDependencies": {
+    "laravel-mix": "^5.0.5",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "vue": "^2.6.12"
+  }
+}
