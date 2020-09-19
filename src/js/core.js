@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import { entries, merge } from 'lodash'
 
 export function app (name, component, custom_store = {}) {
@@ -10,7 +11,8 @@ export function app (name, component, custom_store = {}) {
     return null;
   }
   
-  console.log(node);
+  // console.log(node);
+  // Vue.config.devtools = true;
 
 	// root store
 	const default_store = {
