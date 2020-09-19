@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { entries, merge } from 'lodash'
-import { Button, Select } from 'element-ui';
+import { Button, Input } from 'element-ui';
 
 export function app (name, component, custom_store = {}) {
 	Vue.use(Vuex);
 	Vue.use(Button)
+	Vue.use(Input)
 
   const node = document.querySelector(`#vue-app[vue-app=${name}]`)
 
