@@ -27,24 +27,23 @@ export default {
   },
   methods: {
     overrideSlotDefault({node, index, path, tree}, original) {
-      // return <table border="1">
-      //   <tbody>
-          <tr>
-            <td width="100px">{ index }</td>
-            <td width="300px">{ node.title }</td>
-          </tr>
-      //   </tbody>
-      // </table>
+      return <div class="node-content">
+        <button class="mrs drag-trigger">Drag</button>
+        <button class="mrs fold-btn" onClick={() => tree.toggleFold(node, path)}>{node.$folded ? '+' : '-'}</button>
+        { <el-input placeholder="Kode Kegiatan" size="small" v-model={node.text} /> }
+        <button class="mls">edit</button>
+        <button class="mls" onClick={() => this.removeNodeByPath(path)}>remove</button>
+        <button class="mls" onClick={() => this.hideNode(node)}>hidden</button>
+      </div>
     },
     blockHeader() {
-      return <table border="1">
-        <thead>
-          <tr>
-            <th width="100px">ID Kegiatan</th>
-            <th width="300px">Nama Kegiatan</th>
-          </tr>
-        </thead>
-      </table>  
+     return <div class="header">
+        <div>
+          <button onClick={this.add}>add</button>
+          <button onClick={this.showHidden} class="mls">show hidden</button>
+        </div>
+        <input onKeydown={(e) => e.key === 'Enter' && this.search(e)} placeholder="Search"  />
+      </div>
     },
     // blockFooter() {
     //   return </table>

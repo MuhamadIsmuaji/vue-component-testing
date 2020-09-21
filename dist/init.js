@@ -754,39 +754,78 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     overrideSlotDefault: function overrideSlotDefault(_ref, original) {
+      var _this = this;
+
       var node = _ref.node,
           index = _ref.index,
           path = _ref.path,
           tree = _ref.tree;
       var h = this.$createElement;
-      // return <table border="1">
-      //   <tbody>
-      h("tr", [h("td", {
-        "attrs": {
-          "width": "100px"
+      return h("div", {
+        "class": "node-content"
+      }, [h("button", {
+        "class": "mrs drag-trigger"
+      }, ["Drag"]), h("button", {
+        "class": "mrs fold-btn",
+        "on": {
+          "click": function click() {
+            return tree.toggleFold(node, path);
+          }
         }
-      }, [index]), h("td", {
+      }, [node.$folded ? '+' : '-']), h("el-input", {
         "attrs": {
-          "width": "300px"
+          "placeholder": "Kode Kegiatan",
+          "size": "small"
+        },
+        "model": {
+          value: node.text,
+          callback: function callback($$v) {
+            _this.$set(node, "text", $$v);
+          }
         }
-      }, [node.title])]); //   </tbody>
-      // </table>
+      }), h("button", {
+        "class": "mls"
+      }, ["edit"]), h("button", {
+        "class": "mls",
+        "on": {
+          "click": function click() {
+            return _this.removeNodeByPath(path);
+          }
+        }
+      }, ["remove"]), h("button", {
+        "class": "mls",
+        "on": {
+          "click": function click() {
+            return _this.hideNode(node);
+          }
+        }
+      }, ["hidden"])]);
     },
     blockHeader: function blockHeader() {
+      var _this2 = this;
+
       var h = this.$createElement;
-      return h("table", {
-        "attrs": {
-          "border": "1"
+      return h("div", {
+        "class": "header"
+      }, [h("div", [h("button", {
+        "on": {
+          "click": this.add
         }
-      }, [h("thead", [h("tr", [h("th", {
+      }, ["add"]), h("button", {
+        "on": {
+          "click": this.showHidden
+        },
+        "class": "mls"
+      }, ["show hidden"])]), h("input", {
+        "on": {
+          "keydown": function keydown(e) {
+            return e.key === 'Enter' && _this2.search(e);
+          }
+        },
         "attrs": {
-          "width": "100px"
+          "placeholder": "Search"
         }
-      }, ["ID Kegiatan"]), h("th", {
-        "attrs": {
-          "width": "300px"
-        }
-      }, ["Nama Kegiatan"])])])]);
+      })]);
     },
     // blockFooter() {
     //   return </table>
@@ -798,21 +837,21 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     showHidden: function showHidden() {
-      var _this = this;
+      var _this3 = this;
 
       this.walkTreeData(function (node) {
-        _this.$set(node, '$hidden', false);
+        _this3.$set(node, '$hidden', false);
       });
     },
     hideNode: function hideNode(node) {
       this.$set(node, '$hidden', true);
     },
     search: function search(e) {
-      var _this2 = this;
+      var _this4 = this;
 
       var value = e.target.value || '';
       this.walkTreeData(function (node) {
-        _this2.$set(node, '$hidden', !node.text.includes(value));
+        _this4.$set(node, '$hidden', !node.text.includes(value));
       });
     }
   }
